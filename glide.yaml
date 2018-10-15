@@ -14,6 +14,8 @@ import:
   version: 5d6fca44a948d2be89a9702de7717f0168403d3d
 - package: github.com/golang/snappy
   version: 2e65f85255dbc3072edf28d6b5b8efc472979f5a
+- package: github.com/gogs/chardet
+  version: 2404f777256163ea3eadb273dada5dcb037993c0
 
 # SDK for QingStor.
 - package: github.com/yunify/qingstor-sdk-go

@@ -1,8 +1,8 @@
-hash: dd387890f91eca02de358988fd802c140272680f3e3df8a261bf77400d5a1cca
-updated: 2018-08-20T15:53:20.765588027+08:00
+hash: 00d184e33a2aa7ee616856fcbbc4c831bd2d2e3654803f4035b1144d89335663
+updated: 2018-10-15T14:57:37.209841784+08:00
 imports:
 - name: cloud.google.com/go
-  version: 64a2037ec6be8a4b0c1d1f706ed35b428b989239
+  version: dfffe386c33fb24c34ee501e5723df5b97b98514
   subpackages:
   - compute/metadata
   - iam
@@ -11,16 +11,12 @@ imports:
   - internal/trace
   - internal/version
   - storage
-- name: contrib.go.opencensus.io/exporter/stackdriver
-  version: f7f5758592258ab71384efef9cdb0daf785a9ab1
-  subpackages:
-  - propagation
 - name: github.com/aliyun/aliyun-oss-go-sdk
-  version: 36bf7aa2f916f274137aedd05d1d36f6a3c0f4a6
+  version: ddc87ec2145f324f91257266e657cd7fa0ff1c8c
   subpackages:
   - oss
 - name: github.com/aws/aws-sdk-go
-  version: ca229c7730be9278527fbb287f5a26c91e328d86
+  version: bf8067ceb6e7f51e150c218972dccfeeed892b85
   subpackages:
   - aws
   - aws/awserr
@@ -39,6 +35,7 @@ imports:
   - aws/request
   - aws/session
   - aws/signer/v4
+  - internal/s3err
   - internal/sdkio
   - internal/sdkrand
   - internal/sdkuri
@@ -56,7 +53,9 @@ imports:
 - name: github.com/cenkalti/backoff
   version: 61153c768f31ee5f130071d08fc82b85208528de
 - name: github.com/go-ini/ini
-  version: 5cf292cae48347c2490ac1a58fe36735fb78df7e
+  version: 9c8236e659b76e87bf02044d06fde8683008ff3e
+- name: github.com/gogs/chardet
+  version: 2404f777256163ea3eadb273dada5dcb037993c0
 - name: github.com/golang/protobuf
   version: b4deda0973fb4c70b50d226b1af49f3da59f5265
   subpackages:
@@ -74,6 +73,8 @@ imports:
   version: 76626ae9c91c4f2a10f34cad8ce83ea42c93bb75
 - name: github.com/jmespath/go-jmespath
   version: c2b33e8439af944379acbdd9c3a5fe0bc44bd8a5
+- name: github.com/konsorten/go-windows-terminal-sequences
+  version: 5c8c8bd35d3832f5d134ae1e1e375b69a4d25242
 - name: github.com/pengsrc/go-shared
   version: db9bcfc423552eef790d989bb81ef055d0d26286
   subpackages:
@@ -98,7 +99,7 @@ imports:
   - rpc.v7
   - xlog.v7
 - name: github.com/sirupsen/logrus
-  version: 3e01752db0189b9157070a0e1668a620f9a85da2
+  version: ad15b42461921f1fb3529b058c6786c6a45d5162
 - name: github.com/spf13/cobra
   version: 7b2c5ac9fc04fc5efafb60700713d4fa609b777b
 - name: github.com/spf13/pflag
@@ -140,8 +141,9 @@ imports:
   - service
   - utils
 - name: go.opencensus.io
-  version: 1789eaf7638d6f16d055afd35654928c04663cfc
+  version: ae36bd8445ff9cde752c94cf0d4f3f9dced1facc
   subpackages:
+  - exemplar
   - internal
   - internal/tagencoding
   - plugin/ochttp
@@ -153,12 +155,13 @@ imports:
   - trace
   - trace/internal
   - trace/propagation
+  - trace/tracestate
 - name: golang.org/x/crypto
-  version: aabede6cba87e37f413b3e60ebfc214f8eeca1b0
+  version: 0c41d7ab0a0ee717d4590a44bcb987dfd9e183eb
   subpackages:
   - ssh/terminal
 - name: golang.org/x/net
-  version: f4c29de78a2a91c00474a2e689954305c350adf9
+  version: 8a410e7b638dca158bf9e766925842f6651ff828
   subpackages:
   - context
   - context/ctxhttp
@@ -169,7 +172,7 @@ imports:
   - internal/timeseries
   - trace
 - name: golang.org/x/oauth2
-  version: 3d292e4d0cdc3a0113e6d207bb137145ef1de42f
+  version: c57b0facaced709681d9f90397429b9430a74754
   subpackages:
   - google
   - internal
@@ -181,14 +184,14 @@ imports:
   - unix
   - windows
 - name: golang.org/x/text
-  version: 6e3c4e7365ddcc329f090f96e4348398f6310088
+  version: 4d1c5fb19474adfe9562c9847ba425e7da817e81
   subpackages:
   - secure/bidirule
   - transform
   - unicode/bidi
   - unicode/norm
 - name: google.golang.org/api
-  version: e21acd801f91da814261b938941d193bb036441a
+  version: 6873a707eacedb17acac10177bd8d45885f629ee
   subpackages:
   - gensupport
   - googleapi
@@ -199,8 +202,9 @@ imports:
   - option
   - storage/v1
   - transport/http
+  - transport/http/internal/propagation
 - name: google.golang.org/appengine
-  version: 4216e58b9158e5f1c906f1aca75162a46a2ec88a
+  version: 03cac3b07182cfb08c0d0c0b6ee72a1ceb151c92
   subpackages:
   - datastore
   - internal
@@ -213,14 +217,14 @@ imports:
   - internal/urlfetch
   - urlfetch
 - name: google.golang.org/genproto
-  version: daca94659cb50e9f37c1b834680f2e46358f10b0
+  version: c66870c02cf823ceb633bcd05be3c7cda29976f4
   subpackages:
   - googleapis/api/annotations
   - googleapis/iam/v1
   - googleapis/rpc/code
   - googleapis/rpc/status
 - name: google.golang.org/grpc
-  version: 9907ae0e57ce159e835381ed54eb271206bf7b12
+  version: 5b2c343e0bde905ff6b4c5bc7877cdcc765b9700
   subpackages:
   - balancer
   - balancer/base
