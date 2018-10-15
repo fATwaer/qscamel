@@ -4,6 +4,7 @@ package utils
 
 import (
 	"github.com/gogs/chardet"
+	"github.com/sirupsen/logrus"
 	"golang.org/x/text/encoding"
 	"golang.org/x/text/encoding/simplifiedchinese"
 )
@@ -20,6 +21,7 @@ func parseGB18030(name string) (string, error) {
 	if err != nil {
 		return "", err
 	}
+	logrus.Infof("Object name is GB18030 encoded, converted to %s.", s)
 	return s, nil
 }
 

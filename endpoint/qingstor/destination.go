@@ -42,6 +42,11 @@ func (c *Client) Delete(ctx context.Context, p string) (err error) {
 
 // Write implement destination.Write
 func (c *Client) Write(ctx context.Context, p string, size int64, r io.Reader) (err error) {
+	p, err = utils.ConvertToUTF8(p)
+	if err != nil {
+		logrus.Errorf("Object %s convert to utf-8 failed for %v.", p, err)
+		return
+	}
 	cp := utils.Join(c.Path, p)
 
 	_, err = c.client.PutObject(cp, &service.PutObjectInput{
