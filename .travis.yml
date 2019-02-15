@@ -1,7 +1,10 @@
 language: go
 go:
-  - "1.10"
+  - "1.11"
   - master
+
+env:
+  - GO111MODULE=on
 
 cache:
   directories:
@@ -15,20 +18,13 @@ before_install:
           pushd make-4.0 && ./configure && make && popd;
       fi
     - pushd make-4.0 && sudo make install && popd
-    - if [[ ! -d "./glide-v0.12.3" ]]; then
-          wget https://github.com/Masterminds/glide/releases/download/v0.12.3/glide-v0.12.3-linux-amd64.tar.gz &&
-          tar -vxzf glide-v0.12.3-linux-amd64.tar.gz &&
-          mv linux-amd64 glide-v0.12.3;
-      fi
-    - export PATH=${HOME}/source/glide-v0.12.3:${GOPATH}/bin:$PATH
+    - export PATH=${GOPATH}/bin:$PATH
     - popd
     - make --version
-    - glide --version
     - mkdir ${HOME}/.qscamel
 
 install:
   - go get -u golang.org/x/lint/golint
-  - glide install
 
 script:
   - make check
